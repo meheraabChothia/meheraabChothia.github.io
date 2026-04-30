@@ -16,7 +16,7 @@ Honestly I'm not really sure why but there's just this burning sensation in me t
 Maybe I'll have a more concrete reason when I progress.
 
 
-## The Learning Process:
+## The Learning Process
 
 So I started by just searching about sockets. Literally just a google search for sockets in python, and I came across this blog post: [Sockets for dummies](https://mathspp.com/blog/sockets-for-dummies). The author starts by talking about his own motivations on learning socket programming and what his end goals are, and they align with my current goals with socket programming as well, basically being able to understand and explain what sockets are to others and to be able to use them in Python to have my programs communicate with each other.  
 We start by going through the official [HOWTO](https://docs.python.org/3/howto/sockets.html) on sockets. I did go through it myself and things are not too complicated. They talk about server and client processes and sockets, with an example of how our browser was able to access the page we're currently reading.  
@@ -25,7 +25,7 @@ So a server socket will bind itself to an address and wait till a client socket 
 Next in the blog the author starts by making his own server socket and trying to connect his browser to it and sending data to the browser from his server code.  
 He starts by making a socket, and using `bind()` to bind it to his `localhost`. And then he decides to just try to connect his browser to it as it is a client after all. He faced a whole slew of issues while trying to do this however and what interested me was his flow of solving the issues and trying things out. Made a server? Let's try to connect to it with the browser. Can't seem to send the data, maybe the browser is trying to send some data first so let's try to read that data. No `read()` method? Let's list all methods using `dir()`. Found a method called `recv()` but don't know how to use it? Use the `help()` method to understand the syntax. That was pretty cool and another goal of sorts it to be able to learn like this. Keep iterating over things to try and do.  
 
-### Creating a server:
+### Creating a server
 So I tried out the whole browser communication thingy the blog was trying out as well but then I wanted to make my own client socket in another code and try to communicate with my server code.  
 
 From what I understood about sockets, the creation process for both the server and client sockets stays the same. The difference between the two comes from what we do with the sockets. For server sockets we start with `bind()` which binds them to an address and port. For a client socket it's using the `connect()` function to connect to an address and port. So I just created another socket in another REPL and used `connect()` to connect to my localhost which already had the server socket bound to it.  
@@ -352,5 +352,3 @@ And it still failed. After a little digging I found a stack overflow page where 
 
 Post all of that, the most noticeable problem is the "graphical" one, since we're printing everything to one common terminal page stuff looks messed up. We'll care about that later on.  
 The important thing is that using threading and sockets we've made this weird chat interface. Now this is not all I wanted to do with sockets, ideally I should be able to use this to send data between programs that are on different devices, this whole chat interface was just a nice way for me to see the whole data sending aspect in action. My next course of action will be to think of something interesting to build, which will probably be a separate post.
-
-
