@@ -6,7 +6,7 @@ tags: [sockets, concurrency, python]
 ---
 
 
-## Why am I even doing this??
+## Why am I even doing this?
 At work one of the things I have been extensively working with are APIs. Now to be quite honest before I started working I never really looked into what APIs are, instead I just understood how I can use them and moved on (a serious plot hole in my learning).  
 Once I started using it, a part of me kept wondering how this works. I mean I have two different processes and I can communicate between them while both of them exist on different devices, the concept baffled me. Anytime I wanted to have any sort of communication between two codes I never really searched up how it's done, instead in my laziness I just wrote everything I wanted to send into a common file and let the other program read from it, but that is pretty slow and stupid, and there is a whole other slew of problems that can come out of this.  
 So here existed a completely new way of communication and while I could make APIs, debug them and use them I had no idea what was really going on in the background.  
@@ -103,7 +103,7 @@ It failed.
 Naturally, it's very rare for something to work on the first run for me so let's try to understand why it did not work.  
 First the error: The error pointed to the `client.connect()` line with a `ConnectionRefusedError`, basically telling me that that connection was refused.  
 
-I realised that while I had changed the client code to connect to my IP address, I had forgotten to change the code on the server's end. So the server was still bound to the localhost. I changed that to bind to ('',8000) which will bind to all available addresses the machine seems to have. (This is mentioned in the HOWTO).  
+I realised that while I had changed the client code to connect to my IP address, I had forgotten to change the code on the server's end. So the server was still bound to the localhost. I changed that to bind to `('',8000)` which will bind to all available addresses the machine seems to have. (This is mentioned in the HOWTO).  
 
 While using `''` binds every address, if I want to just allow connections on my WiFi network I can just bind the socket to my IP address on the network. If I want to let devices connected to my VPN connect to my server I can use my IP address on my VPN instead. But using `''` lets anybody that can connect to my laptop in. At least that's what I understand from this.  
 
@@ -183,7 +183,7 @@ I need to figure out a way to separate the sending and receiving sections. If I 
 
 The two loops themselves are not going to be a problem to make, I can create 2 sockets per connection, one for receiving and one for sending. Basically both of them will be one way connections between the client and the server. But running them parallelly is a problem. So if I want to run them in the same file I can't run one loop while the other one is running.  
 
-So I need to find a way to concurrently run 2 loops and that's exactly what I googled. That helped me find two different libraries in python, [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) and ['threading'](https://docs.python.org/3/library/threading.html).  
+So I need to find a way to concurrently run 2 loops and that's exactly what I googled. That helped me find two different libraries in python, [`multiprocessing`](https://docs.python.org/3/library/multiprocessing.html) and [`threading`](https://docs.python.org/3/library/threading.html).  
 
 When trying to understand the differences between the two, I kept coming across this statement:
 ~~~txt
